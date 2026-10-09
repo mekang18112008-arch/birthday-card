@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Для моей любимой ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #ff6fae;
+        }
+
+        /* =========================
+           ЭКРАНЫ
+        ========================= */
+
+        .screen {
+            position: fixed;
+            inset: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            padding: 25px;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    #ffb6d9 0 5%,
+                    transparent 6%
+                ),
+                radial-gradient(
+                    circle at 80% 30%,
+                    #ff9ac5 0 4%,
+                    transparent 5%
+                ),
+                linear-gradient(
+                    135deg,
+                    #ff4f91,
+                    #ff8fc7,
+                    #ff5b9d
+                );
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.1);
+        }
+
+
+        /* =========================
+           ФОНОВЫЕ СЕРДЕЧКИ
+        ========================= */
+
+        .background-hearts {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .background-hearts span {
+            position: absolute;
+            bottom: -60px;
+
+            color: rgba(255,255,255,0.65);
+
+            font-size: 25px;
+
+            animation:
+                floatHeart linear infinite;
+        }
+
+        @keyframes floatHeart {
+
+            from {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.7;
+            }
+
+            85% {
+                opacity: 0.7;
+            }
+
+            to {
+                transform:
+                    translateY(-115vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================
+           ГЛАВНАЯ КНОПКА
+        ========================= */
+
+        .main-button {
+            position: relative;
+            z-index: 5;
+
+            border: none;
+            outline: none;
+
+            padding: 18px 45px;
+
+            border-radius: 60px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff174f,
+                    #ff4f91,
+                    #ff1493
+                );
+
+            color: white;
+
+            font-size: 22px;
+            font-weight: bold;
+
+            box-shadow:
+                0 10px 30px
+                rgba(150, 0, 70, 0.35);
+
+            cursor: pointer;
+
+            animation:
+                buttonPulse 1.7s infinite;
+        }
+
+        .main-button:active {
+            transform: scale(0.9);
+        }
+
+        @keyframes buttonPulse {
+
+            0%, 100% {
+                box-shadow:
+                    0 10px 30px
+                    rgba(150, 0, 70, 0.35);
+            }
+
+            50% {
+                box-shadow:
+                    0 10px 45px
+                    rgba(255,255,255,0.65);
+            }
+        }
+
+
+        /* =========================
+           ПОЗДРАВЛЕНИЕ
+        ========================= */
+
+        .greeting {
+            position: relative;
+            z-index: 5;
+
+            width: 100%;
+            max-width: 420px;
+
+            text-align: center;
+
+            color: white;
+
+            font-size:
+                clamp(23px, 6vw, 31px);
+
+            font-weight: bold;
+
+            line-height: 1.45;
+
+            text-shadow:
+                0 3px 10px
+                rgba(100, 0, 50, 0.35);
+
+            animation:
+                textAppear 1.5s ease;
+        }
+
+
+        /*
+           ТЕПЕРЬ ТЕКСТ ОБЫЧНОЙ БЕЛЫЙ.
+           НИКАКОЙ РАДУГИ.
+        */
+
+        .greeting .rainbow {
+            color: white;
+
+            text-shadow:
+                0 3px 10px
+                rgba(100, 0, 50, 0.35);
+        }
+
+
+        @keyframes textAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(0.6)
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+
+        /* =========================
+           КНОПКА "ЕЩЁ"
+        ========================= */
+
+        .more-button {
+            position: relative;
+            z-index: 5;
+
+            margin-top: 30px;
+
+            border: 2px solid white;
+
+            background:
+                rgba(255,255,255,0.2);
+
+            color: white;
+
+            padding: 14px 38px;
+
+            border-radius: 50px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            backdrop-filter: blur(8px);
+
+            cursor: pointer;
+
+            animation:
+                textAppear 1s ease;
+        }
+
+        .more-button:active {
+            transform: scale(0.9);
+        }
+
+
+        /* =========================
+           ПРИЗНАНИЕ
+        ========================= */
+
+        .love-text {
+            position: relative;
+            z-index: 5;
+
+            text-align: center;
+
+            font-size:
+                clamp(28px, 8vw, 42px);
+
+            font-weight: bold;
+
+            color: white;
+
+            text-shadow:
+                0 4px 15px
+                rgba(100, 0, 50, 0.4);
+
+            animation:
+                loveAppear 1.5s ease,
+                loveGlow 2s ease-in-out
+                infinite alternate;
+        }
+
+        @keyframes loveAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(0.2)
+                    rotate(-8deg);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    rotate(0);
+            }
+        }
+
+        @keyframes loveGlow {
+
+            from {
+                text-shadow:
+                    0 4px 15px
+                    rgba(255,255,255,0.3);
+            }
+
+            to {
+                text-shadow:
+                    0 4px 30px
+                    rgba(255,255,255,0.9);
+            }
+        }
+
+
+        /* =========================
+           ФИНАЛЬНЫЙ ТЕКСТ
+        ========================= */
+
+        .final-text {
+            position: relative;
+            z-index: 10;
+
+            text-align: center;
+
+            color: white;
+
+            font-size:
+                clamp(28px, 8vw, 40px);
+
+            font-weight: bold;
+
+            line-height: 1.35;
+
+            text-shadow:
+                0 5px 20px
+                rgba(100, 0, 50, 0.5);
+
+            animation:
+                finalAppear 2s ease;
+        }
+
+        @keyframes finalAppear {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    scale(0.2);
+            }
+
+            70% {
+                transform:
+                    scale(1.15);
+            }
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        /* =========================
+           ФИНАЛЬНЫЙ ФОН
+        ========================= */
+
+        #finalScreen {
+            background:
+                radial-gradient(
+                    circle at center,
+                    #ff9ccc,
+                    #ff5b9d 60%,
+                    #ff3f86
+                );
+        }
+
+
+        /* =========================
+           ПАДАЮЩИЕ СЕРДЦА И ТОРТИКИ
+        ========================= */
+
+        .falling {
+            position: fixed;
+
+            top: -80px;
+
+            z-index: 20;
+
+            pointer-events: none;
+
+            animation:
+                fall linear forwards;
+        }
+
+        @keyframes fall {
+
+            from {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 1;
+            }
+
+            to {
+                transform:
+                    translateY(115vh)
+                    rotate(720deg);
+
+                opacity: 0.8;
+            }
+        }
+
+
+        /* =========================
+           ИСКРЫ
+        ========================= */
+
+        .sparkle {
+            position: fixed;
+
+            z-index: 8;
+
+            pointer-events: none;
+
+            color: white;
+
+            font-size: 20px;
+
+            animation:
+                sparkle 1.5s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+
+            0% {
+                opacity: 1;
+
+                transform:
+                    scale(0);
+            }
+
+            50% {
+                opacity: 1;
+
+                transform:
+                    scale(1.5);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    scale(0);
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ФОНОВЫЕ СЕРДЕЧКИ
+    ========================= -->
+
+    <div class="background-hearts">
+
+        <span
+            style="
+                left: 5%;
+                animation-duration: 7s;
+            ">
+            ❤️
+        </span>
+
+        <span
+            style="
+                left: 15%;
+                animation-duration: 9s;
+                animation-delay: 2s;
+            ">
+            💕
+        </span>
+
+        <span
+            style="
+                left: 28%;
+                animation-duration: 6s;
+                animation-delay: 1s;
+            ">
+            💗
+        </span>
+
+        <span
+            style="
+                left: 42%;
+                animation-duration: 10s;
+                animation-delay: 3s;
+            ">
+            ❤️
+        </span>
+
+        <span
+            style="
+                left: 55%;
+                animation-duration: 8s;
+            ">
+            💖
+        </span>
+
+        <span
+            style="
+                left: 68%;
+                animation-duration: 7s;
+                animation-delay: 2s;
+            ">
+            💕
+        </span>
+
+        <span
+            style="
+                left: 80%;
+                animation-duration: 9s;
+                animation-delay: 1s;
+            ">
+            ❤️
+        </span>
+
+        <span
+            style="
+                left: 92%;
+                animation-duration: 6s;
+                animation-delay: 3s;
+            ">
+            💗
+        </span>
+
+    </div>
+
+
+
+    <!-- =========================
+         ЭКРАН 1
+    ========================= -->
+
+    <section
+        id="startScreen"
+        class="screen">
+
+        <button
+            class="main-button"
+            onclick="startCard()">
+
+            Нажми ❤️
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         ЭКРАН 2
+    ========================= -->
+
+    <section
+        id="greetingScreen"
+        class="screen hidden">
+
+        <div class="greeting">
+
+            <div class="rainbow">
+
+                Любимая моя и мой лучик счастья ❤️❤️😘
+
+                <br><br>
+
+                С Днём рождения! ❤️❤️💐💐
+
+                <br><br>
+
+                Пусть каждый твой день начинается
+                с улыбки
+                (потому что у тебя есть я 😘❤️).
+
+                Не грусти никогда 💐💐🥰🥰❤️❤️
+                и будь всегда радостной! 🥰❤️❤️💐💐
+
+                <br><br>
+
+                Ведь ты самая лучшая из всех,
+                кого я встречал! 💕💕💝💝💕❤️
+
+                <br><br>
+
+                Муа 😘
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="firstMore"
+            class="more-button"
+            style="display:none;"
+            onclick="showLove()">
+
+            Ещё 💕
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         ЭКРАН 3
+    ========================= -->
+
+    <section
+        id="loveScreen"
+        class="screen hidden">
+
+        <div class="love-text">
+
+            Я тебя безумно люблю ❤️❤️❤️
+
+        </div>
+
+
+        <button
+            class="more-button"
+            onclick="showFinal()">
+
+            Ещё 💕
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         ФИНАЛ
+    ========================= -->
+
+    <section
+        id="finalScreen"
+        class="screen hidden">
+
+        <div class="final-text">
+
+            С Днём рождения 💕💝
+
+            <br>
+
+            Зайка ❤️😘😘💐💐
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        const startScreen =
+            document.getElementById("startScreen");
+
+        const greetingScreen =
+            document.getElementById("greetingScreen");
+
+        const loveScreen =
+            document.getElementById("loveScreen");
+
+        const finalScreen =
+            document.getElementById("finalScreen");
+
+        const firstMore =
+            document.getElementById("firstMore");
+
+
+
+        /* =========================
+           ПЕРВЫЙ ЭКРАН
+        ========================= */
+
+        function startCard() {
+
+            startScreen.classList.add("hidden");
+
+
+            setTimeout(() => {
+
+                greetingScreen.classList.remove("hidden");
+
+                createSparkles();
+
+
+                /*
+                    Через 5 секунд
+                    появляется кнопка "Ещё"
+                */
+
+                setTimeout(() => {
+
+                    firstMore.style.display =
+                        "block";
+
+                }, 5000);
+
+            }, 700);
+        }
+
+
+
+        /* =========================
+           ВТОРОЙ ЭКРАН
+        ========================= */
+
+        function showLove() {
+
+            greetingScreen.classList.add("hidden");
+
+
+            setTimeout(() => {
+
+                loveScreen.classList.remove("hidden");
+
+                createSparkles();
+
+            }, 700);
+        }
+
+
+
+        /* =========================
+           ФИНАЛЬНЫЙ ЭКРАН
+        ========================= */
+
+        function showFinal() {
+
+            loveScreen.classList.add("hidden");
+
+
+            setTimeout(() => {
+
+                finalScreen.classList.remove("hidden");
+
+                startParty();
+
+            }, 700);
+        }
+
+
+
+        /* =========================
+           ИСКРЫ
+        ========================= */
+
+        function createSparkles() {
+
+            for (
+                let i = 0;
+                i < 25;
+                i++
+            ) {
+
+                setTimeout(() => {
+
+                    const sparkle =
+                        document.createElement("div");
+
+                    sparkle.className =
+                        "sparkle";
+
+                    sparkle.innerHTML =
+                        "✨";
+
+
+                    sparkle.style.left =
+                        Math.random() * 100 + "%";
+
+                    sparkle.style.top =
+                        Math.random() * 100 + "%";
+
+
+                    document.body.appendChild(
+                        sparkle
+                    );
+
+
+                    setTimeout(() => {
+
+                        sparkle.remove();
+
+                    }, 1500);
+
+                }, i * 50);
+            }
+        }
+
+
+
+        /* =========================
+           ПРАЗДНИЧНЫЙ ДОЖДЬ
+        ========================= */
+
+        function startParty() {
+
+            const items = [
+
+                "❤️",
+                "💕",
+                "💖",
+                "💗",
+                "💝",
+
+                "🎂",
+                "🎂",
+
+                "🧁",
+
+                "💐",
+
+                "❤️"
+
+            ];
+
+
+            /*
+                Создаём 70 элементов
+            */
+
+            for (
+                let i = 0;
+                i < 70;
+                i++
+            ) {
+
+                setTimeout(() => {
+
+                    const item =
+                        document.createElement("div");
+
+                    item.className =
+                        "falling";
+
+
+                    item.innerHTML =
+                        items[
+                            Math.floor(
+                                Math.random()
+                                * items.length
+                            )
+                        ];
+
+
+                    item.style.left =
+                        Math.random() * 100 + "vw";
+
+
+                    item.style.fontSize =
+                        (
+                            20 +
+                            Math.random() * 25
+                        ) + "px";
+
+
+                    item.style.animationDuration =
+                        (
+                            3 +
+                            Math.random() * 4
+                        ) + "s";
+
+
+                    document.body.appendChild(
+                        item
+                    );
+
+
+                    setTimeout(() => {
+
+                        item.remove();
+
+                    }, 8000);
+
+                }, i * 70);
+            }
+
+
+            /*
+                Через 6 секунд
+                запускаем новую волну
+            */
+
+            setTimeout(
+                startParty,
+                6000
+            );
+        }
+
+    </script>
+
+</body>
+  </html>
